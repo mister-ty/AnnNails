@@ -1,14 +1,34 @@
 const mongoose = require('mongoose');
 
+// Definir el esquema para los horarios
 const HorarioSchema = new mongoose.Schema({
-    hora: String,
-    disponible: Boolean,
-    evento: String, 
+    hora: {
+        type: String,
+        required: true,
+    },
+    disponible: {
+        type: Boolean,
+        required: true,
+    },
+    evento: {
+        type: String,
+        required: false,
+    },
 });
+
 
 const CalendarioSchema = new mongoose.Schema({
-    fecha: String,
-    horarios: [HorarioSchema],
+    fecha: {
+        type: String,
+        required: true,
+    },
+    horarios: {
+        type: [HorarioSchema], 
+        required: true,
+    },
 });
 
-module.exports = mongoose.model('Calendario', CalendarioSchema);
+const Calendario = mongoose.model('Calendario', CalendarioSchema);
+
+module.exports = Calendario;
+
